@@ -60,25 +60,29 @@ def cargarDatos():
             contFallPy=int(unPais["muertos"])
             contRecupPy=int(unPais["recuperados"])
             w.lblParaguayConfirmados.configure(text=contConfirPy)
-            w.lblParaguayConfirmados.configure(text=contFallPy)
-            w.lblParaguayConfirmados.configure(text=contRecupPy)
+            w.lblParaguayFallecidos.configure(text=contFallPy)
+            w.lblParaguayRecuperados.configure(text=contRecupPy)
+            print(contConfirPy,contFallPy,contRecupPy)
+
 
         elif unPais["pais"]=="Uruguay":
             contConfirUru=int(unPais["confirmados"])
             contFallUru=int(unPais["muertos"])
             contRecupUru=int(unPais["recuperados"])
             w.lblUruguayConfirmados.configure(text=contConfirUru)
-            w.lblUruguayConfirmados.configure(text=contFallUru)
-            w.lblUruguayConfirmados.configure(text=contRecupUru)
+            w.lblUruguayFallecidos.configure(text=contFallUru)
+            w.lblUruguayRecuperados.configure(text=contRecupUru)
 
-        elif unPais["pais"]=="Argentina":
+
+        elif unPais["pais"]=="Brazil":
             contConfirBr=int(unPais["confirmados"])
             contFallBr=int(unPais["muertos"])
             contRecupBr=int(unPais["recuperados"])
             w.lblBrasilConfirmados.configure(text=contConfirBr)
-            w.lblBrasilConfirmados.configure(text=contFallBr)
-            w.lblBrasilConfirmados.configure(text=contRecupBr)
+            w.lblBrasilFallecidos.configure(text=contFallBr)
+            w.lblBrasilRecuperados.configure(text=contRecupBr)
 
+    print(contConfirPy,contFallPy,contRecupPy)
 def masRecuperados():
     print('DEMO_PARCIAL_IRALA_support.masRecuperados')
     sys.stdout.flush()
@@ -93,6 +97,4 @@ if __name__ == '__main__':
     import DEMO_PARCIAL_IRALA
     DEMO_PARCIAL_IRALA.vp_start_gui()
 
-
-cargarDatos()
 
