@@ -147,13 +147,15 @@ def Buscar():
 
 
 def Buscar_Pais():
-    conteo = 0
-    Pais = []
+    total = 0
     for Paises in lstPaises:
-        if Paises['pais'] in lstPaises:
-            conteo += 1
-    lbl_pais.set(Pais)
-    lbl_cant.set(conteo)
+        if int(Paises['confirmados']) >= total:
+            total = int(Paises['confirmados'])
+            Pais = Paises['pais']
+            lbl_pais.set(Pais)
+            lbl_cant.set(total)
+            
+
 
 def destroy_window():
     # Function which closes the window.
