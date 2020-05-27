@@ -358,7 +358,7 @@ class Toplevel1:
 
         self.TButton2 = ttk.Button(self.Frame2_5)
         self.TButton2.place(relx=0.031, rely=0.71, height=25, width=266)
-        self.TButton2.configure(command=covid_support.buscarPaís)
+        self.TButton2.configure(command=covid_support.buscarPais)
         self.TButton2.configure(takefocus="")
         self.TButton2.configure(text='''Buscar''')
 
@@ -396,7 +396,7 @@ class Toplevel1:
         self.Label6_8.configure(text='''Recuperados:''')
 
         self.Entry4_9 = tk.Entry(self.Frame2_5)
-        self.Entry4_9.place(relx=0.718, rely=0.129,height=20, relwidth=0.037)
+        self.Entry4_9.place(relx=0.718, rely=0.129,height=20, relwidth=0.1)
         self.Entry4_9.configure(background="white")
         self.Entry4_9.configure(disabledforeground="#a3a3a3")
         self.Entry4_9.configure(font="TkFixedFont")
@@ -410,7 +410,7 @@ class Toplevel1:
         self.Entry4_9.configure(textvariable=covid_support.buscConf)
 
         self.Entry4_9 = tk.Entry(self.Frame2_5)
-        self.Entry4_9.place(relx=0.718, rely=0.323,height=20, relwidth=0.037)
+        self.Entry4_9.place(relx=0.718, rely=0.323,height=20, relwidth=0.1)
         self.Entry4_9.configure(background="white")
         self.Entry4_9.configure(disabledforeground="#a3a3a3")
         self.Entry4_9.configure(font="TkFixedFont")
@@ -424,7 +424,7 @@ class Toplevel1:
         self.Entry4_9.configure(textvariable=covid_support.buscFall)
 
         self.Entry4_9 = tk.Entry(self.Frame2_5)
-        self.Entry4_9.place(relx=0.718, rely=0.516,height=20, relwidth=0.037)
+        self.Entry4_9.place(relx=0.718, rely=0.516,height=20, relwidth=0.1)
         self.Entry4_9.configure(background="white")
         self.Entry4_9.configure(disabledforeground="#a3a3a3")
         self.Entry4_9.configure(font="TkFixedFont")

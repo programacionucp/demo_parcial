@@ -111,16 +111,15 @@ def buscarConfirmados():
             paisConfirCant.set(mayor)
 
 
-def buscarPaís():
-    pais=paisBusc.get()
+def buscarPais():
+    nomPais=paisBusc.get()
     dia=paisDiaBusc.get()
     for pais in paises:
-        if pais["pais"] == pais:
+        if pais["pais"] == nomPais:
             if pais["dia"] == dia:
-                buscConf.set(int(pais["confirmados"]))
+                buscConf.set(pais["confirmados"])
                 buscFall.set(pais["muertos"])
                 busRec.set(pais["recuperados"])
-            #no terminado
 def destroy_window():
     # Function which closes the window.
     global top_level
