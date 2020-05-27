@@ -32,16 +32,14 @@ def init(top, gui, *args, **kwargs):
     w = gui
     top_level = top
     root = top
-    configInicial()
-
-def configInicial():
-    global contConfirArg,contConfirPy,contConfirUru,contConfirBr
-    global contFallArg,contFallPy,contFallUru,contFallBr
-    global contRecupArg,contRecupPy,contRecupUru,contRecupBr
 
 def buscarPorPais():
-    print('DEMO_PARCIAL_IRALA_support.buscarPorPais')
-    sys.stdout.flush()
+    lstDatos=COVID19.getListaDatos()
+    for unPais in lstDatos:
+        if pais.get()==unPais["pais"] and dia.get()==unPais["dia"]:
+            w.lblBuscarConfirmados.configure(text=unPais["confirmados"])
+            w.lblBuscarFallecidos.configure(text=unPais["muertos"])
+            w.lblBuscarRecuperados.configure(text=unPais["recuperados"])
 
 def cargarDatos():
 
@@ -62,8 +60,6 @@ def cargarDatos():
             w.lblParaguayConfirmados.configure(text=contConfirPy)
             w.lblParaguayFallecidos.configure(text=contFallPy)
             w.lblParaguayRecuperados.configure(text=contRecupPy)
-            print(contConfirPy,contFallPy,contRecupPy)
-
 
         elif unPais["pais"]=="Uruguay":
             contConfirUru=int(unPais["confirmados"])
@@ -82,10 +78,15 @@ def cargarDatos():
             w.lblBrasilFallecidos.configure(text=contFallBr)
             w.lblBrasilRecuperados.configure(text=contRecupBr)
 
-    print(contConfirPy,contFallPy,contRecupPy)
-def masRecuperados():
-    print('DEMO_PARCIAL_IRALA_support.masRecuperados')
-    sys.stdout.flush()
+def masConfirmados():
+    lstDatos=COVID19.getListaDatos()
+    maximo=0
+    for unPais in lstDatos:
+        if int(unPais['confirmados']) >= maximo:
+            maximo = int(unPais['confirmados'])
+            paisMaximo = unPais['pais']
+            w.lblPaisMasRecuperado.configure(text=paisMaximo)
+            w.lblCantidadRecuperados.configure(text=maximo)
 
 def destroy_window():
     # Function which closes the window.

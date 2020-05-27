@@ -440,7 +440,7 @@ class Toplevel1:
         self.lblMasRecuperados.configure(foreground="#000000")
         self.lblMasRecuperados.configure(highlightbackground="#d9d9d9")
         self.lblMasRecuperados.configure(highlightcolor="black")
-        self.lblMasRecuperados.configure(text='''Pais con mas recuperados''')
+        self.lblMasRecuperados.configure(text='''Pais con mas confirmados''')
 
         self.btnBuscarMasRecuperados = tk.Button(self.Canvas2)
         self.btnBuscarMasRecuperados.place(relx=0.322, rely=0.443, height=33
@@ -448,7 +448,7 @@ class Toplevel1:
         self.btnBuscarMasRecuperados.configure(activebackground="#ececec")
         self.btnBuscarMasRecuperados.configure(activeforeground="#000000")
         self.btnBuscarMasRecuperados.configure(background="#d9d9d9")
-        self.btnBuscarMasRecuperados.configure(command=DEMO_PARCIAL_IRALA_support.masRecuperados)
+        self.btnBuscarMasRecuperados.configure(command=DEMO_PARCIAL_IRALA_support.masConfirmados)
         self.btnBuscarMasRecuperados.configure(disabledforeground="#a3a3a3")
         self.btnBuscarMasRecuperados.configure(font=font12)
         self.btnBuscarMasRecuperados.configure(foreground="#000000")
