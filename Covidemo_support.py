@@ -48,9 +48,9 @@ def set_Tk_var():
     global recupbra
     recupbra = tk.IntVar()
     global ent_pais
-    ent_pais = tk.IntVar()
+    ent_pais = tk.StringVar()
     global ent_cant
-    ent_cant = tk.IntVar()
+    ent_cant = tk.StringVar()
     global bus_pais
     bus_pais = tk.StringVar()
     global bus_dia
@@ -101,19 +101,14 @@ def init(top, gui, *args, **kwargs):
 def Busc_precuperado():
     print('Covid-19 demo_support.Busc_precuperado')
     sys.stdout.flush()
-    for datos in lstPais:
-        if datos["pais"]:
-            if int(datos["confirmados"]) >= ent_cant.get():
-                ent_cant.set(datos["confirmados"])
-                ent_pais.set(datos["pais"])
 
 def bus_buscar():
     print('Covid-19 demo_support.bus_buscar')
     sys.stdout.flush()
-    paises=bus_pais.get()
+    Paises=ent_pais.get()
     dias=bus_dia.get()
     for datos in lstPais:
-        if paises == datos["pais"] and dias == datos["dia"]:
+        if Paises == datos["pais"] and dias == datos["dia"]:
             entry_confir.set(datos["confirmados"])
             entry_fallec.set(datos["muertos"])
             entry_recup.set(datos["recuperados"])
