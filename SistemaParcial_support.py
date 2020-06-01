@@ -36,6 +36,9 @@ def set_Tk_var():
     global lbl01_Cant
     lbl01_Cant = tk.StringVar()
     lbl01_Cant.set('')
+    global lbl_canti
+    lbl_canti = tk.StringVar()
+    lbl_canti.set('')
     global lbl02_hombre
     lbl02_hombre = tk.StringVar()
     lbl02_hombre.set('')
@@ -71,8 +74,37 @@ def init(top, gui, *args, **kwargs):
     root = top
 
 def buscar_ID():
-    print('SistemaParcial_support.buscar_ID')
-    sys.stdout.flush()
+    listaDet = []
+    for detalles in lstDiputados:
+        for values in detalles.values():
+            listaDet.append(values)
+    for honorable in listaDet:
+        if entryProvIDDip.get() == honorable['\ufeffdiputado_id']:
+            print(honorable)
+            nombre = str(honorable['diputado_nombre']) + " " + str(honorable['diputado_apellido'])
+            provincia = honorable['diputado_distrito']
+            bloque = honorable['diputado_bloque']
+            año = honorable['bloque_inicio']
+            lbl_nom04.set(nombre)
+            lbl_prov04.set(provincia)
+            lbl_bloque.set(bloque)
+            lbl_año.set(año)
+    cantidad = 0
+    lista = []
+    for viajes in lstViajes:
+        for values in viajes.values():
+            lista.append(values)
+    for viajes in lista:
+        if entryProvIDDip.get() == viajes['\ufeffPersona_id']:
+            cantidad += 1
+            lbl_canti.set(cantidad)
+
+
+
+
+
+
+
 
 def calc_Cantviajes():
     cantidad = 0
