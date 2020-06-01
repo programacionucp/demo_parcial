@@ -8,7 +8,7 @@
 import sys
 import json
 with open('diputados.json', encoding = 'utf-8') as filedip:
-    diputados = json.load(filedip)
+    lista_diputados = json.load(filedip)
 with open('viajes.json', encoding = 'utf-8') as fileviajes:
     viajes = json.load(fileviajes)
 
@@ -28,8 +28,7 @@ def set_Tk_var():
     global buscProv
     buscProv = tk.StringVar()
     global buscCantProv
-    buscCantProv = tk.IntVar()
-    buscCantProv.set(' ')
+    buscCantProv = tk.StringVar()
     global buscBloq
     buscBloq = tk.StringVar()
     global buscCantBloq
@@ -68,19 +67,21 @@ def buscDiputado():
     sys.stdout.flush()
 
 def buscarPBloq():
-    print('parcial_support.buscarPBloq')
-    sys.stdout.flush()
+    bloq=buscBloq.get().upper()
+    gen=buscGen.get().upper()
+    cont=0
+    for diputado in lista_diputados:
+        if diputado[str(lista_diputados.index(diputado)+1)]["diputado_distrito"] == provincia:
+            cont+=1
+    buscCantProv.set(cont)
 
 def buscarPProvincia():
-    provincia=buscProv.get()
-    c=0
-    for diputado in diputados:
-        if diputado[str(diputados.index(diputado)+1)]["diputado_distrito"] == provincia:
-            c+=1
-        buscCantProv.set(c)
-
-
-
+    provincia=buscProv.get().upper()
+    cont=0
+    for diputado in lista_diputados:
+        if diputado[str(lista_diputados.index(diputado)+1)]["diputado_distrito"] == provincia:
+            cont+=1
+    buscCantProv.set(cont)
 
 def buscarPViaje():
     print('parcial_support.buscarPViaje')
