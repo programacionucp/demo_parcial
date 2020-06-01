@@ -83,3 +83,13 @@ ent1_5.place(x=260, y=100)
 ent1_6= tk.Entry(window,width=13)  # boton "sigueinte", al darle click llama a la funcion(operacion_inicio)para los demas datos
 ent1_6.place(x=260, y=120)
 window.mainloop()
+listAux = list()
+    i = 1
+    for elemento in listaDiputados:
+        i= str(i)
+        if elemento[i]['diputado_distrito'] == provincia:
+            if elemento[i]['diputado_nombre'] not in listAux:
+                listAux.append(elemento[i]['diputado_nombre'])
+        i = int(i)
+        i+=1
+    return len(listAux)
