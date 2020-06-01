@@ -74,16 +74,6 @@ def buscar():
             name.set(datos[str(lstDip.index(datos)+1)]["diputado_nombre"]+" "+datos[str(lstDip.index(datos)+1)]["diputado_apellido"])
             for element in lstVia:
                 if element[str(lstVia.index(datos)+1)]["Persona_apellido_y_nombre"] == datos[str(lstDip.index(datos)+1)]["diputado_apellido"]+" "+datos[str(lstDip.index(datos)+1)]["diputado_nombre"]:
-
-
-
-
-
-
-
-
-            #for element in lstVia:
-                if element[str(lstVia.index(datos)+1)]["﻿Persona_id"]==datos[str(lstDip.index(datos)+1)]["﻿diputado_id"]:
                     contador+=1
             proBusc.set(datos[str(lstDip.index(datos))]["diputado_distrito"])
             cantViajes.set(contador)
