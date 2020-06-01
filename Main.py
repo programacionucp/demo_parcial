@@ -19,10 +19,41 @@ def Diputados_x_provincia():
     for diputado in lst_diputados:
         if diputado[str(lst_diputados.index(diputado)+1)]['diputado_distrito']==Provinc_entr_var.get():
             contador+=1
-            print(contador)
-            print(diputado[str(lst_diputados.index(diputado)+1)]['diputado_distrito'])
     cantidad_1_var.set(contador)
 
+def cantidad_diputados_x_bloque():
+    hombres = 0
+    mujeres = 0
+    for diputado in lst_diputados:
+        if diputado[str(lst_diputados.index(diputado)+1)]['diputado_bloque']==bloque_entr_var.get():
+            if diputado[str(lst_diputados.index(diputado)+1)]['diputado_genero']=='M':
+                hombres+=1
+            elif diputado[str(lst_diputados.index(diputado)+1)]['diputado_genero']=='F':
+                mujeres+=1
+    hombres_var.set(hombres)
+    mujeres_var.set(mujeres)
+    
+def cantidad_viajes_func():
+    contador=0
+    for viaje in lst_viajes:
+        if (viaje[str(lst_viajes.index(viaje)+1)]['Origen_ciudad']==origen_var.get()
+        and viaje[str(lst_viajes.index(viaje)+1)]['Destino_ciudad']==destino_var.get()):
+            contador+=1
+    cantidad_2_var.set(contador) 
+    
+def Buscador_diputados_func():
+    contador=0
+    for diputado in lst_diputados:
+        if diputado[str(lst_diputados.index(diputado)+1)]['diputado_id']==diputado_entr_var.get():
+            Nombre_completo_entr_var.set((diputado[str(lst_diputados.index(diputado)+1)]['diputado_apellido'] 
+            +" "+diputado[str(lst_diputados.index(diputado)+1)]['diputado_nombre']))
+            for viaje in lst_viajes:
+                if viaje[str(lst_viajes.index(viaje)+1)]['Persona_id']==diputado[str(lst_diputados.index(diputado)+1)]['diputado_id']:
+                    contador+=1
+            cantidad_viajes_2_entr_var.set(contador)
+            Provincia_buscador_entr_var.set(diputado[str(lst_diputados.index(diputado)+1)]['diputado_distrito'])
+            bloque_2_entr_var.set(diputado[str(lst_diputados.index(diputado)+1)]['diputado_bloque'])
+            año_inicio_entr_var.set(diputado[str(lst_diputados.index(diputado)+1)]['mandato_inicio'])
 
 #GUI
     #Frame_Diputados_por_provincia
@@ -44,7 +75,7 @@ bloque_ = Label(Dip_x_bloque, text='Bloque: ').place(x=20, y=30)
 bloque_entr_var = StringVar(Dip_x_bloque)
 bloque_entr = Entry(Dip_x_bloque, textvariable=bloque_entr_var)
 bloque_entr.place(x=80, y=30)
-Calc_btn_1 = Button(Dip_x_bloque, text='Calcular').place(x=180, y=120)
+Calc_btn_2 = Button(Dip_x_bloque, text='Calcular', command=cantidad_diputados_x_bloque).place(x=180, y=120)
 Hombres_lbl = Label(Dip_x_bloque, text='Hombres: ').place(x=230, y=60)
 Mujeres_lbl = Label(Dip_x_bloque, text='Mujeres: ').place(x=230, y=90)
 hombres_var = StringVar(Dip_x_bloque)
@@ -64,7 +95,7 @@ origen_entr.place(x=80, y=30)
 destino_var = StringVar(Cantidad_Viajes_F)
 destino_entr = Entry(Cantidad_Viajes_F, textvariable=destino_var)
 destino_entr.place(x=80, y=60)
-Calc_btn_1 = Button(Cantidad_Viajes_F, text='Calcular').place(x=180, y=120)
+Calc_btn_3 = Button(Cantidad_Viajes_F, text='Calcular',command=cantidad_viajes_func).place(x=180, y=120)
 Cantidad_2_lbl = Label(Cantidad_Viajes_F, text='Cantidad: ').place(x=230, y=60)
 cantidad_2_var = StringVar(Cantidad_Viajes_F)
 Cantidad_2_entr = Entry(Cantidad_Viajes_F, textvariable=cantidad_2_var)
@@ -77,7 +108,7 @@ diputado_entr_var = StringVar(Buscador_diputados)
 diputado_entr = Entry(Buscador_diputados, textvariable=Buscador_diputados)
 diputado_entr.place(x=120, y=30)
 
-Buscar_btn = Button(Buscador_diputados, text='Buscar').place(x=300, y=30)
+Buscar_btn = Button(Buscador_diputados, text='Buscar', command=Buscador_diputados_func).place(x=300, y=30)
 
 Nombre_completo_lbl = Label(Buscador_diputados, text='Nombre completo: ').place(x=20, y=60)
 Nombre_completo_entr_var = StringVar(Buscador_diputados)
