@@ -6,6 +6,7 @@
 #    Jun 01, 2020 03:49:56 PM -03  platform: Windows NT
 
 import sys
+import json
 
 try:
     import Tkinter as tk
@@ -18,6 +19,12 @@ try:
 except ImportError:
     import tkinter.ttk as ttk
     py3 = True
+
+with open("diputados.json") as archivo:
+    datos = json.load(archivo)
+
+with open("viajes.json") as archivo:
+    datos2 = json.load(archivo)
 
 def set_Tk_var():
     global provcombo
@@ -38,7 +45,9 @@ def init(top, gui, *args, **kwargs):
     root = top
 
 def Diputadosprovincia():
-    print('Parcial2020_support.Diputadosprovincia')
+    for learning in datos:
+        print(learning['diputado_bloque'])
+        print('Parcial2020_support.Diputadosprovincia')
     sys.stdout.flush()
 
 def buscadordip():
