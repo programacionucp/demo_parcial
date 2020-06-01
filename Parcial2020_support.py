@@ -8,6 +8,12 @@
 import sys
 import json
 
+with open("diputados.json", encoding='utf-8') as archivo:
+    datos = json.load(archivo)
+
+with open("viajes.json", encoding='utf-8') as archivo2:
+    datos2 = json.load(archivo2)
+
 try:
     import Tkinter as tk
 except ImportError:
@@ -20,11 +26,6 @@ except ImportError:
     import tkinter.ttk as ttk
     py3 = True
 
-with open("diputados.json") as archivo:
-    datos = json.load(archivo)
-
-with open("viajes.json") as archivo:
-    datos2 = json.load(archivo)
 
 def set_Tk_var():
     global provcombo
@@ -44,10 +45,14 @@ def init(top, gui, *args, **kwargs):
     top_level = top
     root = top
 
+
 def Diputadosprovincia():
-    for learning in datos:
-        print(learning['diputado_bloque'])
-        print('Parcial2020_support.Diputadosprovincia')
+    print(provcombo.get())
+    for provcnt in datos:
+        id=0
+        if datos[str(datos.index(provcnt) )]["diputado_distrito"] == provcombo.get():
+            id += 1
+        print(id)
     sys.stdout.flush()
 
 def buscadordip():
