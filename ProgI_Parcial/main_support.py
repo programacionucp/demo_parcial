@@ -6,6 +6,7 @@
 #    Jun 01, 2020 05:02:12 PM -03  platform: Windows NT
 
 import sys
+import abm
 
 try:
     import Tkinter as tk
@@ -28,22 +29,32 @@ def init(top, gui, *args, **kwargs):
     w = gui
     top_level = top
     root = top
+    w.cb_prov['values'] = abm.listaProvincias()
 
 def buscar():
-    print('main_support.buscar')
-    sys.stdout.flush()
+    idIng = w.et_id.get()
+    lista = abm.buscadorDiputados(idIng)
+    w.lbl_nombre.config(text=lista[0])
+    w.lbl_provincia.config(text=lista[1])
+    w.lbl_cantidad.config(text=lista[4])
+    w.lbl_bloque.config(text=lista[2])
+    w.lbl_inicio.config(text=lista[3])
 
 def calcular1():
-    print('main_support.calcular1')
-    sys.stdout.flush()
+    prov = w.cb_prov.get()
+    w.lbl_cantidad1.config(text=abm.diputadosPorProv(prov))
 
 def calcular2():
-    print('main_support.calcular2')
-    sys.stdout.flush()
+    bloque = w.et_bloque.get()
+    abm.diputadosBloqueGenero(bloque,"M")
+    w.lbl_hombres.config(text=abm.diputadosBloqueGenero(bloque,"M"))
+    w.lbl_mujeres.config(text=abm.diputadosBloqueGenero(bloque,"F"))
 
 def calcular3():
-    print('main_support.calcular3')
-    sys.stdout.flush()
+    origen = w.et_origen.get()
+    destino = w.et_destino.get()
+    cantidad = abm.viajesPorOrigenYDestino(origen,destino)
+    w.lbl_cantidad2.config(text=cantidad)
 
 def destroy_window():
     # Function which closes the window.
