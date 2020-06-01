@@ -1,5 +1,21 @@
 from tkinter import*
 from tkinter import ttk
+import json
+
+with open('diputados.json', encoding = 'utf-8') as file:
+    lst_diputados = json.load(file)
+
+with open('viajes.json', encoding = 'utf-8') as file:
+    lst_viajes = json.load(file)
+
+#funciones
+def provincias():
+    global lst_prov
+    global lst_dip
+    lst_prov = list()
+    lst_dip = list()
+    for un_dipu in lst_diputados:
+        print(un_dipu)
 
 ventana = Tk()
 ventana.title('Parcial programacion')
@@ -51,6 +67,7 @@ lbl_año = Label(ventana, text="--", font="Arial", borderwidth=2, width=25, reli
 #Interactivo
     #Combo
 combo1 = ttk.Combobox(ventana, width=25)
+combo1.configure(value=provincias())
 combo1.place(x=100, y=50)
 combo2 = ttk.Combobox(ventana, width=25)
 combo2.place(x=100, y=140)
@@ -67,6 +84,6 @@ btn_calcular2 = Button(ventana, text="Calcular", font="Arial", cursor="hand2").p
 btn_calcular3 = Button(ventana, text="Calcular", font="Arial", cursor="hand2").place(x=300, y=220)
 btn_buscar = Button(ventana, text="Buscar", font="Arial", cursor="hand2").place(x=340, y=305)
 
-
+provincias()
 
 ventana.mainloop()
