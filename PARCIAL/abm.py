@@ -3,16 +3,10 @@ import json
 with open('diputados.json', encoding = 'utf-8') as file:
     listaDiputados = json.load(file)
 
-def guardarDiputados():
-    with open('diputados','w') as archivo:
-        json.dump(listaDiputados,archivo)
 
-with open('viajes.json', encoding = 'utf-8') as file:
-    listaViajes = json.load(file)
+with open('viajes.json', encoding = 'utf-8') as fileViaje:
+    listaViajes = json.load(fileViaje)
 
-def guardarViajes():
-    with open('viajes','w') as archivo:
-        json.dump(listaViajes,archivo)
 
 
 def diputadosPorProv(provincia): #Realizar por combobox
@@ -40,4 +34,22 @@ def diputadosBloqueGenero(bloque,genero):
         i+=1
     return len(listAux)
 
-print(diputadosBloqueGenero("UCR","M"))
+#Visualizar la cantidad de viajes  por origen (“Origen_ciudad“) y por destino (“Destino_ciudad“), para lo cual se
+# pide que desarrolle  una función que recibiendo como valores de parámetros un origen de viaje  (Ej. “Buenos Aires”)
+# y un destino (Ej. "Misiones") retorne dicha cantidad.
+
+def viajesPorOrigenYDestino(origen,destino):
+    varAux = 0
+    i = 1
+    for elemento in listaViajes:
+        i = str(i)
+        if elemento[i]["Origen_ciudad"] == origen:
+            if elemento[i]["Destino_ciudad"] == destino:
+                varAux+=1
+        i = int (i)
+        i+=1
+    return varAux
+
+
+
+
