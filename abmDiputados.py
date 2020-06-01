@@ -15,7 +15,7 @@ def getViajes():
 def CantidadDiputados(nombre):
     cantidadDiputados = 0
     for unDiputado in listadiputados:
-        infoDiputado = unDiputado['1']
-        if infoDiputado["diputado_distrito"]==nombre:
+        infoDiputado = unDiputado["1"]
+        while infoDiputado==nombre:
             cantidadDiputados += 1
     return cantidadDiputados
