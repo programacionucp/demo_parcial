@@ -8,6 +8,16 @@ with open('viajes.json', encoding = 'utf-8') as fileViaje:
     listaViajes = json.load(fileViaje)
 
 
+def listaProvincias():
+    listAux = list()
+    i = 1
+    for elemento in listaDiputados:
+        i= str(i)
+        if elemento[i]['diputado_distrito'] not in listAux:
+                listAux.append(elemento[i]['diputado_distrito'])
+        i = int(i)
+        i+=1
+    return listAux
 
 def diputadosPorProv(provincia): #Realizar por combobox
     listAux = list()
@@ -83,6 +93,4 @@ def buscadorDiputados(id):
         i = int (i)
         i+=1
     return None
-
-print(buscadorDiputados("HCDN1136"))
 
