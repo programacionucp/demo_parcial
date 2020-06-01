@@ -163,7 +163,7 @@ def mostrar_nombres_paises():
     lista_de_paises=list()
     for finan in listaFechasObservacion:
         if finan["pais"] not in lista_de_paises:
-            lista_de_paises.append(finan["pais"])
+            lista_de_paises.append(finan[""])
     return lista_de_paises
 
 def destroy_window():

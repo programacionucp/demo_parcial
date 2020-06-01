@@ -6,6 +6,11 @@
 #    Jun 01, 2020 03:44:12 PM -03  platform: Windows NT
 
 import sys
+import json
+with open("diputados.json", encoding='utf-8') as archivodeDiputados:
+    listadeDiputados = json.load(archivodeDiputados)
+    with open("viajes.json", encoding='utf-8') as archivodeViajes:
+        listadeViajes = json.load(archivodeViajes)
 
 try:
     import Tkinter as tk
@@ -49,6 +54,9 @@ def init(top, gui, *args, **kwargs):
     w = gui
     top_level = top
     root = top
+    w.tcombobox_provincias(values=mostrar_nombres_provincias())
+
+
 
 def buscar_diputados_por_id():
     print('parcial_support.buscar_diputados_por_id')
@@ -61,7 +69,17 @@ def calcular_cant_por_provincia():
 def calcular_dip_por_bloque():
     print('parcial_support.calcular_dip_por_bloque')
     sys.stdout.flush()
-
+#funciones para combobox
+def mostrar_nombres_provincias():
+    global listaFinan, un_diputado
+    dip=1
+    lista_de_provincias=list()
+    for un_indice in listadeDiputados:
+        dip+=1
+        for un_diputado in un_indice[str(dip)]:
+            if un_diputado["diputado_distrito"] not in lista_de_provincias:
+                lista_de_provincias.append(un_diputado["diputado_distrito"])
+    return lista_de_provincias
 def destroy_window():
     # Function which closes the window.
     global top_level
