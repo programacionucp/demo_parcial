@@ -69,20 +69,43 @@ def calcuclar_provincia():
     global w, cantidad
     provincia = w.txtProvincia.get()
     indice = 0
-    cantidadA = 0
-    while indice <= 0:
-        
-    cantidad.set[cantidad]
-
-
+    PROVINCIA = provincia.upper()
+    for diputado in listaDiputados:
+        if diputado[str(listaDiputados.index(diputado) + 1)]["diputado_distrito"] == PROVINCIA:
+            indice += 1
+    cantidad.set(indice)
 
 def calcular_bloque():
-    print('parcial_support.calcular_bloque')
-    sys.stdout.flush()
+    global w, hombres, mujeres
+    bloque = w.txtBloque.get()
+    fem = 0
+    masc = 0
+    BLOQUE = bloque.upper()
+    for diputado in listaDiputados:
+        if diputado[str(listaDiputados.index(diputado)+1)]["diputado_bloque"] == BLOQUE and diputado[str(listaDiputados.index(diputado) + 1)]["diputado_genero"] == "F":
+            fem += 1
+        elif diputado[str(listaDiputados.index(diputado)+1)]["diputado_bloque"] == BLOQUE and diputado[str(listaDiputados.index(diputado) + 1)]["diputado_genero"] == "M":
+            masc += 1
+    hombres.set(masc)
+    mujeres.set(fem)
 
 def calcular_viajes():
-    print('parcial_support.calcular_viajes')
-    sys.stdout.flush()
+    global w, hombres, mujeres
+    origen = w.txtOrigen.get()
+    destino = w.txtDestino.get()
+    fem = 0
+    masc = 0
+    ORIGEN = origen.upper()
+    DESTINO = destino.upper()
+    for viaje in listaViajes:
+        if diputado[str(listaDiputados.index(diputado) + 1)]["diputado_bloque"] == BLOQUE and \
+                diputado[str(listaDiputados.index(diputado) + 1)]["diputado_genero"] == "F":
+            fem += 1
+        elif diputado[str(listaDiputados.index(diputado) + 1)]["diputado_bloque"] == BLOQUE and \
+                diputado[str(listaDiputados.index(diputado) + 1)]["diputado_genero"] == "M":
+            masc += 1
+    hombres.set(masc)
+    mujeres.set(fem)
 
 def destroy_window():
     # Function which closes the window.
