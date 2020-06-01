@@ -10,7 +10,7 @@ import json
 with open('diputados.json', encoding = 'utf-8') as filedip:
     lista_diputados = json.load(filedip)
 with open('viajes.json', encoding = 'utf-8') as fileviajes:
-    viajes = json.load(fileviajes)
+    lista_viajes = json.load(fileviajes)
 
 try:
     import Tkinter as tk
@@ -63,17 +63,34 @@ def init(top, gui, *args, **kwargs):
     root = top
 
 def buscDiputado():
-    print('parcial_support.buscDiputado')
-    sys.stdout.flush()
+    id=idDip.get()
+    cont = 0
+    viajes = 0
+    for diputado in lista_diputados:
+        if diputado[str(lista_diputados.index(diputado)+1)]["\ufeffdiputado_id"] == id:
+            nomcomp=(diputado[str(lista_diputados.index(diputado)+1)]["diputado_nombre"]+" "+diputado[str(lista_diputados.index(diputado)+1)]["diputado_apellido"])
+            Provincia=diputado[str(lista_diputados.index(diputado) + 1)]["diputado_distrito"]
+            bloq=diputado[str(lista_diputados.index(diputado) + 1)]["diputado_bloque"]
+            Inicio=diputado[str(lista_diputados.index(diputado) + 1)]["mandato_inicio"]
+            for viaje in lista_viajes:
+                if viaje[str(lista_viajes.index(viaje) + 1)]["\ufeffPersona_id"] == id:
+                        viajes += 1
+
+            nomComp.set(nomcomp)
+            prov.set(Provincia)
+            bloque.set(bloq)
+            anoInicio.set(Inicio[0:4])
+            cantViajesDip.set(viajes)
+        cont+=1
 
 def buscarPBloq():
     bloq=buscBloq.get().upper()
     gen=buscGen.get().upper()
     cont=0
     for diputado in lista_diputados:
-        if diputado[str(lista_diputados.index(diputado)+1)]["diputado_distrito"] == provincia:
+        if diputado[str(lista_diputados.index(diputado)+1)]["diputado_bloque"] == bloq and diputado[str(lista_diputados.index(diputado)+1)]["diputado_genero"] == gen:
             cont+=1
-    buscCantProv.set(cont)
+    buscCantBloq.set(cont)
 
 def buscarPProvincia():
     provincia=buscProv.get().upper()
@@ -83,9 +100,15 @@ def buscarPProvincia():
             cont+=1
     buscCantProv.set(cont)
 
+
 def buscarPViaje():
-    print('parcial_support.buscarPViaje')
-    sys.stdout.flush()
+    origen = buscOrig.get()
+    destino = buscDest.get()
+    cont = 0
+    for viaje in lista_viajes:
+        if viaje[str(lista_viajes.index(viaje) + 1)]["Origen_ciudad"] == origen and viaje[str(lista_viajes.index(viaje) + 1)]["Destino_ciudad"] == destino:
+            cont += 1
+    buscCantViaje.set(cont)
 
 def destroy_window():
     # Function which closes the window.
