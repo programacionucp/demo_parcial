@@ -9,13 +9,21 @@ with open('viajes.json', encoding = 'utf-8') as file:
     lst_viajes = json.load(file)
 
 #funciones
-def provincias():
-    global lst_prov
+def dipu():
     global lst_dip
-    lst_prov = list()
     lst_dip = list()
     for un_dipu in lst_diputados:
-        print(un_dipu)
+        lst_dip.append(un_dipu)
+    return lst_dip
+
+def provincias():
+    global lst_prov
+    lst_prov = list()
+    for una_prov in dipu():
+        if una_prov not in lst_prov:
+            lst_prov.append(una_prov)
+            print(lst_prov)
+    return lst_prov
 
 ventana = Tk()
 ventana.title('Parcial programacion')
@@ -83,7 +91,5 @@ btn_calcular = Button(ventana, text="Calcular", font="Arial", cursor="hand2").pl
 btn_calcular2 = Button(ventana, text="Calcular", font="Arial", cursor="hand2").place(x=300, y=135)
 btn_calcular3 = Button(ventana, text="Calcular", font="Arial", cursor="hand2").place(x=300, y=220)
 btn_buscar = Button(ventana, text="Buscar", font="Arial", cursor="hand2").place(x=340, y=305)
-
-provincias()
 
 ventana.mainloop()
