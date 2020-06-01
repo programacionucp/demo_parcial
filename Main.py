@@ -44,11 +44,12 @@ def cantidad_viajes_func():
 def Buscador_diputados_func():
     contador=0
     for diputado in lst_diputados:
-        if diputado[str(lst_diputados.index(diputado)+1)]['diputado_id']==diputado_entr_var.get():
+        if diputado[str(lst_diputados.index(diputado)+1)]['﻿diputado_id']==diputado_entr_var.get():
             Nombre_completo_entr_var.set((diputado[str(lst_diputados.index(diputado)+1)]['diputado_apellido'] 
             +" "+diputado[str(lst_diputados.index(diputado)+1)]['diputado_nombre']))
             for viaje in lst_viajes:
-                if viaje[str(lst_viajes.index(viaje)+1)]['Persona_id']==diputado[str(lst_diputados.index(diputado)+1)]['diputado_id']:
+                format_=diputado[str(lst_diputados.index(diputado)+1)]['﻿diputado_id'][:4] + '0' + diputado[str(lst_diputados.index(diputado)+1)]['﻿diputado_id'][4:]
+                if format_==viaje[str(lst_viajes.index(viaje)+1)]['﻿Persona_id']:
                     contador+=1
             cantidad_viajes_2_entr_var.set(contador)
             Provincia_buscador_entr_var.set(diputado[str(lst_diputados.index(diputado)+1)]['diputado_distrito'])
@@ -105,19 +106,19 @@ Buscador_diputados = Frame(root, width=500, height=300, relief=SUNKEN, bd=20)
 Buscador_diputados.pack()
 Diputado_id = Label(Buscador_diputados, text='Diputado ID: ').place(x=20, y=30)
 diputado_entr_var = StringVar(Buscador_diputados)
-diputado_entr = Entry(Buscador_diputados, textvariable=Buscador_diputados)
+diputado_entr = Entry(Buscador_diputados, textvariable=diputado_entr_var)
 diputado_entr.place(x=120, y=30)
 
 Buscar_btn = Button(Buscador_diputados, text='Buscar', command=Buscador_diputados_func).place(x=300, y=30)
 
 Nombre_completo_lbl = Label(Buscador_diputados, text='Nombre completo: ').place(x=20, y=60)
 Nombre_completo_entr_var = StringVar(Buscador_diputados)
-Nombre_completo_entr = Entry(Buscador_diputados, textvariable=Buscador_diputados)
+Nombre_completo_entr = Entry(Buscador_diputados, textvariable=Nombre_completo_entr_var)
 Nombre_completo_entr.place(x=150, y=60)
 
 Provincia_buscador_lbl = Label(Buscador_diputados, text='Provincia: ').place(x=20, y=90)
 Provincia_buscador_entr_var = StringVar(Buscador_diputados)
-Provincia_buscador_entr = Entry(Buscador_diputados, textvariable=Buscador_diputados)
+Provincia_buscador_entr = Entry(Buscador_diputados, textvariable=Provincia_buscador_entr_var)
 Provincia_buscador_entr.place(x=150, y=90)
 
 cantidad_viajes_2_lbl = Label(Buscador_diputados, text='Cantidad de Viajes: ').place(x=20, y=120)
