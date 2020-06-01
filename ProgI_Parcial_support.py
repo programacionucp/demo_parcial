@@ -6,6 +6,7 @@
 #    Jun 01, 2020 03:17:19 PM -03  platform: Windows NT
 #    Jun 01, 2020 04:27:42 PM -03  platform: Windows NT
 #    Jun 01, 2020 05:01:44 PM -03  platform: Windows NT
+#    Jun 01, 2020 05:17:35 PM -03  platform: Windows NT
 
 import sys
 import ABM as ABM
@@ -26,6 +27,10 @@ lstDiputados = ABM.archivoDiputados()
 lstViajes = ABM.archivoViajes()
 
 def set_Tk_var():
+    global combobox2
+    combobox2 = tk.StringVar()
+    global combobox3
+    combobox3 = tk.StringVar()
     global combobox
     combobox = tk.StringVar()
 
@@ -37,6 +42,8 @@ def init(top, gui, *args, **kwargs):
     contador = 0
     lista = list ()
     lstdistritos = list ()
+    listaOrigen = list()
+    listaDestino = list()
     for elemento in lstDiputados:
         contador+=1
         distritos = elemento[str(contador)] ['diputado_distrito']
@@ -45,6 +52,19 @@ def init(top, gui, *args, **kwargs):
             lstdistritos.append(distritos)
             w.TCombobox1 ['values'] = lstdistritos
 
+    contadorViaje = 0
+    for element in lstViajes:
+        contadorViaje+=1
+        origen = element[str(contadorViaje)] ['Origen_ciudad']
+
+        destino = element[str(contadorViaje)] ['Destino_ciudad']
+
+        if origen not in listaOrigen:
+            listaOrigen.append(origen)
+            w.TCombobox2 ['values'] = listaOrigen
+        elif destino not in listaDestino:
+            listaDestino.append(destino)
+            w.TCombobox3 ['values'] = listaDestino
 def calcularCantxProvincia():
     contador = 0
     contadorDip = 0
@@ -74,8 +94,15 @@ def calcularBloque():
                 w.lblMujeres.configure(text= str(GenF))
 
 def calcularCantDestino():
-    print('ProgI_Parcial_support.calcularCantDestino')
-    sys.stdout.flush()
+    contador = 0
+    contadorViaje = 0
+    for elemento in lstViajes:
+        contador+=1
+        origen = elemento[str(contador)] ['Origen_ciudad']
+        destino = elemento[str(contador)] ['Destino_ciudad']
+        if origen == w.TCombobox2.get() and destino == w.TCombobox3.get():
+            contadorViaje+=1
+        w.lblCantidadDestino.configure(text = str(contadorViaje))
 
 def destroy_window():
     # Function which closes the window.

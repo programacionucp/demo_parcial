@@ -5,7 +5,6 @@
 #  in conjunction with Tcl version 8.6
 #    Jun 01, 2020 03:17:19 PM -03  platform: Windows NT
 #    Jun 01, 2020 04:27:42 PM -03  platform: Windows NT
-#    Jun 01, 2020 05:01:44 PM -03  platform: Windows NT
 
 import sys
 import ABM as ABM
@@ -44,8 +43,6 @@ def init(top, gui, *args, **kwargs):
         if distritos not in lstdistritos:
             lstdistritos.append(distritos)
             w.TCombobox1 ['values'] = lstdistritos
-            w.TCombobox2 ['values'] = lstdistritos
-            w.TCombobox3 ['values'] = lstdistritos
 
 def calcularCantxProvincia():
     contador = 0
@@ -58,6 +55,7 @@ def calcularCantxProvincia():
         if distritos == w.TCombobox1.get():
             contadorDip+=1
             w.lblCantProvincia.configure (text = str(contadorDip))
+
 
 def calcularBloque():
     contador = 0
@@ -74,20 +72,6 @@ def calcularBloque():
             elif genero == 'F':
                 GenF+=1
                 w.lblMujeres.configure(text= str(GenF))
-
-def calcularCantDestino():
-    contador = 0
-    contadorViaje = 0
-    for elemento in lstDiputados:
-        contador+=1
-        origen = elemento[str(contador)] ['Origen_ciudad']
-        destino = elemento[str(contador)] ['Destino_ciudad']
-        if origen == w.TCombobox2.get() and destino == w.TCombobox3.get():
-            contadorViaje+=1
-        w.lblCantidadDestino.configure(text = str(contadorViaje))
-
-
-
 
 def destroy_window():
     # Function which closes the window.
