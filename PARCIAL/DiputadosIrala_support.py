@@ -52,15 +52,26 @@ def cantidadViajes():
 
 def diputadoXID():
     lstDiputados=DIPUTADOS.getListaDatos()
+    lstViajes=VIAJES.getListaDatos()
     clave=0
+    contViajes=0
     for unDiputado in lstDiputados:
         clave+=1
-        print(unDiputado[str(clave)]["diputado_id"])
-        if unDiputado[str(clave)]["diputado_id"]==diputadoID.get():
+        if unDiputado[str(clave)]["\ufeffdiputado_id"]==diputadoID.get():
             nombre=unDiputado[str(clave)]["diputado_nombre"]
             apellido=unDiputado[str(clave)]["diputado_apellido"]
-            nombreCompleto=nombre+apellido
+            nombreCompleto=apellido+" "+nombre
             w.lblMostrarNomCompleto.configure(text=nombreCompleto)
+            w.lblMostrarProvinciaID.configure(text=unDiputado[str(clave)]["diputado_distrito"])
+            w.lblMostrarBloqueID.configure(text=unDiputado[str(clave)]["diputado_bloque"])
+            w.lblMostrarAñoInicio.configure(text=unDiputado[str(clave)]["mandato_inicio"])
+
+    for unViaje in lstViajes:
+        print(unViaje[str(clave)]["Persona_apellido_y_nombre"])
+        clave+=1
+        if unViaje[str(clave)]["Persona_apellido_y_nombre"]==nombreCompleto:
+            contViajes+=1
+    w.lblCantViajesID.configure(text=contViajes)
 
 def diputadosXBloque():
     lstDiputados=DIPUTADOS.getListaDatos()
