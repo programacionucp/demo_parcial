@@ -5,7 +5,6 @@
 #  in conjunction with Tcl version 8.6
 #    Jun 01, 2020 03:17:19 PM -03  platform: Windows NT
 #    Jun 01, 2020 04:27:42 PM -03  platform: Windows NT
-#    Jun 01, 2020 05:01:44 PM -03  platform: Windows NT
 
 import sys
 import ABM as ABM
@@ -57,6 +56,7 @@ def calcularCantxProvincia():
             contadorDip+=1
             w.lblCantProvincia.configure (text = str(contadorDip))
 
+
 def calcularBloque():
     contador = 0
     GenM = 0
@@ -72,10 +72,6 @@ def calcularBloque():
             elif genero == 'F':
                 GenF+=1
                 w.lblMujeres.configure(text= str(GenF))
-
-def calcularCantDestino():
-    print('ProgI_Parcial_support.calcularCantDestino')
-    sys.stdout.flush()
 
 def destroy_window():
     # Function which closes the window.
