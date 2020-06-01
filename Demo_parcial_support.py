@@ -96,9 +96,29 @@ def init(top, gui, *args, **kwargs):
 
     w.tcombobox_paises.configure(values=mostrar_nombres_paises(),state="readonly")
 
-def mostrar_dat():
+def mostrar_datos_paises():
+    global list_aux
+    confirmados_l = [0, 0, 0, 0]
+    fallecidos_l = [0, 0, 0, 0]
+    recuperados_l = [0, 0, 0, 0]
+    for i in listaFechasObservacion:
+        if i['pais'] == "Argentina":
+            confirmados_l[0] += int(i['confirmados'])
+            fallecidos_l[0] += int(i['muertos'])
+            recuperados_l[0] += int(i['recuperados'])
+        elif i['pais'] == "Paraguay":
+            confirmados_l[1] += int(i['confirmados'])
+            fallecidos_l[1] += int(i['muertos'])
+            recuperados_l[1] += int(i['recuperados'])
+        elif i['pais'] == "Uruguay":
+            confirmados_l[2] += int(i['confirmados'])
+            fallecidos_l[2] += int(i['muertos'])
+            recuperados_l[2] += int(i['recuperados'])
+        elif i['pais'] == "Brazil":
+            confirmados_l[3] += int(i['confirmados'])
+            fallecidos_l[3] += int(i['muertos'])
+            recuperados_l[3] += int(i['recuperados'])
 
-    print("ok")
 
 
 def pais_encontrado():
