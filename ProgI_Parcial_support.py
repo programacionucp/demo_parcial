@@ -6,6 +6,7 @@
 #    Jun 01, 2020 03:17:19 PM -03  platform: Windows NT
 
 import sys
+import ABM as ABM
 
 try:
     import Tkinter as tk
@@ -19,9 +20,13 @@ except ImportError:
     import tkinter.ttk as ttk
     py3 = True
 
+lstDiputados = ABM.archivoDiputados()
+lstViajes = ABM.archivoViajes()
+
 def set_Tk_var():
     global combobox
     combobox = tk.StringVar()
+
 
 def init(top, gui, *args, **kwargs):
     global w, top_level, root
@@ -30,7 +35,19 @@ def init(top, gui, *args, **kwargs):
     root = top
 
 def calcularCantxProvincia():
-    
+    contador = 0
+    lstdistritos = list ()
+    for elemento in lstDiputados:
+        contador+=1
+        distritos = elemento[str(contador)] ['diputado_distrito']
+        if distritos not in lstdistritos:
+            lstdistritos.append(distritos)
+            w.TCombobox1 ['values'] = lstdistritos
+
+
+
+
+
 
 def destroy_window():
     # Function which closes the window.
