@@ -220,7 +220,7 @@ class Toplevel1:
         self.lbl02_mujer.configure(highlightbackground="#d9d9d9")
         self.lbl02_mujer.configure(highlightcolor="black")
         self.lbl02_mujer.configure(relief="ridge")
-        self.lbl02_mujer.configure(textvariable=SistemaParcial_support.lbl02_hombre)
+        self.lbl02_mujer.configure(textvariable=SistemaParcial_support.lbl02_mujer)
 
         self.Labelframe3 = tk.LabelFrame(top)
         self.Labelframe3.place(relx=0.013, rely=0.44, relheight=0.231

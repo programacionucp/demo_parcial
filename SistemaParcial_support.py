@@ -39,6 +39,9 @@ def set_Tk_var():
     global lbl02_hombre
     lbl02_hombre = tk.StringVar()
     lbl02_hombre.set('')
+    global lbl02_mujer
+    lbl02_mujer = tk.StringVar()
+    lbl02_mujer.set('')
     global entryProvOri
     entryProvOri = tk.StringVar()
     global lbl03_CantViajes
@@ -72,8 +75,17 @@ def buscar_ID():
     sys.stdout.flush()
 
 def calc_Cantviajes():
-    print('SistemaParcial_support.calc_Cantviajes')
-    sys.stdout.flush()
+    cantidad = 0
+    lista = []
+    for viajes in lstViajes:
+        for values in viajes.values():
+            lista.append(values)
+    for viajes in lista:
+        if entryProvOri.get() == viajes['Origen_ciudad'] and entryProvDst.get() == viajes['Destino_ciudad']:
+            cantidad += 1
+    lbl03_CantViajes.set(cantidad)
+
+
 
 def calc_PorBloq():
     hombre = "M"
