@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[102]:
+# In[111]:
 
 
 from tkinter import *
@@ -27,8 +27,25 @@ def Cant_dip_x_prov():
         if diputado[str(Lista_diput.index(diputado)+1)]['diputado_distrito']==entry_ingr_prov_var.get():
             contador+=1
     entry_cant_farm_var.set(contador)
-        
 
+def Cant_dip_x_bp():
+    lista_aux=[0,0]
+    for diputado in Lista_diput:
+        if diputado[str(Lista_diput.index(diputado)+1)]['diputado_bloque']==entry_ingr_bloq_var.get():
+            if diputado[str(Lista_diput.index(diputado)+1)]['diputado_genero']=='M':
+                lista_aux[0]+=1
+            elif diputado[str(Lista_diput.index(diputado)+1)]['diputado_genero']=='F':
+                lista_aux[1]+=1
+    entry_cant_h_var.set(lista_aux[0])
+    entry_cant_m_var.set(lista_aux[1])
+    
+def Busc_Dip():
+    contador=0
+    for viajes in Lista_viajes:
+        if (viajes[str(Lista_viajes.index(viajes)+1)]['Origen_ciudad']==entry_ingr_orig_var.get() and viajes[str(Lista_viajes.index(viajes)+1)]['Destino_ciudad']==entry_ingr_dest_var.get()):
+            contador+=1
+    entry_cant_viaj_var.set(contador)
+     
 #Interfaz
     #Frames:
 frame_cant_dip_x_prov = Frame(ventana, width=900, height=180, relief=SUNKEN, bg='light gray', bd=3)
@@ -63,7 +80,7 @@ lbl_m = Label(frame_cant_dip_x_bp, text='Mujeres:', width=10, height=1, bg='ligh
     #Entry frame2:
 entry_ingr_bloq_var = StringVar(frame_cant_dip_x_bp)
 entry_ingr_bloq = Entry(frame_cant_dip_x_bp, relief=SUNKEN, bg= 'light gray', bd=3, textvariable=entry_ingr_bloq_var)
-entry_ingr_bloq.place(x=190, y=90,width=100,height=25)
+entry_ingr_bloq.place(x=190, y=90,width=130,height=25)
 entry_cant_h_var = StringVar(frame_cant_dip_x_bp)
 entry_cant_h = Entry(frame_cant_dip_x_bp, relief=SUNKEN, bg= 'light gray', bd=3,state=DISABLED, textvariable=entry_cant_h_var)
 entry_cant_h.place(x=700, y=50,width=100,height=25)
@@ -71,7 +88,7 @@ entry_cant_m_var = StringVar(frame_cant_dip_x_bp)
 entry_cant_m = Entry(frame_cant_dip_x_bp, relief=SUNKEN, bg= 'light gray', bd=3,state=DISABLED, textvariable=entry_cant_m_var)
 entry_cant_m.place(x=700, y=100,width=100,height=25)
     #Button frame2:
-btn_calc_dip_x_bp = Button(frame_cant_dip_x_bp, text='Calcular', width=8, height=2, bg='light gray').place(x=390,y=90)
+btn_calc_dip_x_bp = Button(frame_cant_dip_x_bp, text='Calcular', width=8, height=2, bg='light gray',command=Cant_dip_x_bp).place(x=390,y=90)
 
 
     #Lbls frame3:
@@ -82,15 +99,15 @@ lbl_cant_viaj = Label(frame_cant_viaj, text='Cantidad:', width=10, height=1, bg=
     #Entry frame3:
 entry_ingr_orig_var = StringVar(frame_cant_viaj)
 entry_ingr_orig = Entry(frame_cant_viaj, relief=SUNKEN, bg= 'light gray', bd=3, textvariable=entry_ingr_orig_var)
-entry_ingr_orig.place(x=190, y=70,width=100,height=25)
+entry_ingr_orig.place(x=190, y=70,width=130,height=25)
 entry_ingr_dest_var = StringVar(frame_cant_viaj)
 entry_ingr_dest = Entry(frame_cant_viaj, relief=SUNKEN, bg= 'light gray', bd=3, textvariable=entry_ingr_dest_var)
-entry_ingr_dest.place(x=190, y=130,width=100,height=25)
+entry_ingr_dest.place(x=190, y=130,width=130,height=25)
 entry_cant_viaj_var = StringVar(frame_cant_viaj)
 entry_cant_viaj = Entry(frame_cant_viaj, relief=SUNKEN, bg= 'light gray', bd=3,state=DISABLED, textvariable=entry_cant_viaj_var)
-entry_cant_viaj.place(x=700, y=100,width=100,height=25)
+entry_cant_viaj.place(x=700, y=100,width=130,height=25)
     #Button frame3
-btn_calc_viaj = Button(frame_cant_viaj, text='Calcular', width=8, height=2, bg='light gray').place(x=390,y=90)
+btn_calc_viaj = Button(frame_cant_viaj, text='Calcular', width=8, height=2, bg='light gray', command=Busc_Dip).place(x=390,y=90)
 
 
     #Lbls frame4:
@@ -126,4 +143,10 @@ entry_añ_in.place(x=725, y=130,width=100,height=25)
 btn_calc_viaj = Button(frame_busc_dip, text='Calcular', width=8, height=2, bg='light gray').place(x=435,y=70)
 
 ventana.mainloop()
+
+
+# In[ ]:
+
+
+
 
