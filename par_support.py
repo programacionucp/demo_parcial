@@ -67,6 +67,28 @@ def init(top, gui, *args, **kwargs):
 def buscar():
     print('par_support.buscar')
     sys.stdout.flush()
+    contador= 0
+    dip=dipuID.get
+    for datos in lstDip:
+        if datos[str(lstDip.index(datos)+1)]["﻿diputado_id"] == dip:
+            name.set(datos[str(lstDip.index(datos)+1)]["diputado_nombre"]+" "+datos[str(lstDip.index(datos)+1)]["diputado_apellido"])
+            for element in lstVia:
+                if element[str(lstVia.index(datos)+1)]["Persona_apellido_y_nombre"] == datos[str(lstDip.index(datos)+1)]["diputado_apellido"]+" "+datos[str(lstDip.index(datos)+1)]["diputado_nombre"]:
+
+
+
+
+
+
+
+
+            #for element in lstVia:
+                if element[str(lstVia.index(datos)+1)]["﻿Persona_id"]==datos[str(lstDip.index(datos)+1)]["﻿diputado_id"]:
+                    contador+=1
+            proBusc.set(datos[str(lstDip.index(datos))]["diputado_distrito"])
+            cantViajes.set(contador)
+            bloqBusc.set(datos[str(lstDip.index(datos))]["diputado_bloque"])
+            añoInicio.set(datos[str(lstDip.index(datos))]["mandato_inicio"])
 
 def calc1():
     print('par_support.calc1')
@@ -86,19 +108,19 @@ def calc2():
     for datos in lstDip:
         if datos[str(lstDip.index(datos)+1)]["diputado_bloque"] == blo and datos[str(lstDip.index(datos)+1)]["diputado_genero"] == "F":
             contador+=1
-            hombres.set(contador)
+            mujeres.set(contador)
         if datos[str(lstDip.index(datos)+1)]["diputado_bloque"] == blo and datos[str(lstDip.index(datos)+1)]["diputado_genero"] == "M":
             contador+=1
-            mujeres.set(contador)
+            hombres.set(contador)
 
 def calc3():
     print('par_support.calc3')
     sys.stdout.flush()
     contador=0
-    ori=origen.get().upper()
-    dest=destino.get().upper()
-    for element in lstVia:
-        if element[str(lstVia.index(element)+1)]["Origen_ciudad"] == ori and element[str(lstVia.index(element)+1)]["Destino_ciudad"] == dest:
+    orig=origen.get()
+    dest=destino.get()
+    for datos in lstVia:
+        if datos[str(lstVia.index(datos)+1)]["Origen_ciudad"] == orig and datos[str(lstVia.index(datos)+1)]["Destino_ciudad"] == dest:
             contador+=1
     cantidadVia.set(contador)
 
