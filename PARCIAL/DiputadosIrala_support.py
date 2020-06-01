@@ -37,6 +37,9 @@ def init(top, gui, *args, **kwargs):
     top_level = top
     root = top
 
+import DIPUTADOS
+import VIAJES
+
 def cantidadViajes():
     print('DiputadosIrala_support.cantidadViajes')
     sys.stdout.flush()
@@ -46,12 +49,24 @@ def diputadoXID():
     sys.stdout.flush()
 
 def diputadosXBloque():
-    print('DiputadosIrala_support.diputadosXBloque')
-    sys.stdout.flush()
+    lstDiputados=DIPUTADOS.getListaDatos()
+    clave=0
+    contDiputados=0
+    for unDiputado in lstDiputados:
+        clave+=1
+        if unDiputado[str(clave)]["diputado_bloque"]==provincia.get():
+            contDiputados+=1
+    w.lblMostrarCantidad.configure(text=contDiputados)
 
 def diputadosXProvincia():
-    print('DiputadosIrala_support.diputadosXProvincia')
-    sys.stdout.flush()
+    lstDiputados=DIPUTADOS.getListaDatos()
+    clave=0
+    contDiputados=0
+    for unDiputado in lstDiputados:
+        clave+=1
+        if unDiputado[str(clave)]["diputado_distrito"]==provincia.get():
+            contDiputados+=1
+    w.lblMostrarCantidad.configure(text=contDiputados)
 
 def destroy_window():
     # Function which closes the window.
@@ -62,7 +77,6 @@ def destroy_window():
 if __name__ == '__main__':
     import DiputadosIrala
     DiputadosIrala.vp_start_gui()
-
 
 
 
