@@ -41,22 +41,41 @@ import DIPUTADOS
 import VIAJES
 
 def cantidadViajes():
-    print('DiputadosIrala_support.cantidadViajes')
-    sys.stdout.flush()
+    lstViajes=VIAJES.getListaDatos()
+    clave=0
+    contViajes=0
+    for unViaje in lstViajes:
+        clave+=1
+        if unViaje[str(clave)]["Origen_ciudad"]==provinciaOrigen.get() and unViaje[str(clave)]["Destino_ciudad"]==provinciaDestino.get():
+            contViajes+=1
+    w.lblMostrarViajes.configure(text=contViajes)
 
 def diputadoXID():
-    print('DiputadosIrala_support.diputadoXID')
-    sys.stdout.flush()
+    lstDiputados=DIPUTADOS.getListaDatos()
+    clave=0
+    for unDiputado in lstDiputados:
+        clave+=1
+        print(unDiputado[str(clave)]["diputado_id"])
+        if unDiputado[str(clave)]["diputado_id"]==diputadoID.get():
+            nombre=unDiputado[str(clave)]["diputado_nombre"]
+            apellido=unDiputado[str(clave)]["diputado_apellido"]
+            nombreCompleto=nombre+apellido
+            w.lblMostrarNomCompleto.configure(text=nombreCompleto)
 
 def diputadosXBloque():
     lstDiputados=DIPUTADOS.getListaDatos()
     clave=0
-    contDiputados=0
+    contHombres=0
+    contMujeres=0
     for unDiputado in lstDiputados:
         clave+=1
-        if unDiputado[str(clave)]["diputado_bloque"]==provincia.get():
-            contDiputados+=1
-    w.lblMostrarCantidad.configure(text=contDiputados)
+        if unDiputado[str(clave)]["diputado_bloque"]==bloque.get():
+            if unDiputado[str(clave)]["diputado_genero"]=="M":
+                contHombres+=1
+            elif unDiputado[str(clave)]["diputado_genero"]=="F":
+                contMujeres+=1
+    w.lblMostrarHombres.configure(text=contHombres)
+    w.lblMostrarMujeres.configure(text=contMujeres)
 
 def diputadosXProvincia():
     lstDiputados=DIPUTADOS.getListaDatos()
