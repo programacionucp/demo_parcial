@@ -137,6 +137,24 @@ def pais_encontrado():
     sys.stdout.flush()
 
 def pais_mas_recuperados():
+    indice = confirmados_l.index(max(confirmados_l))
+    cantidad = max(confirmados_l)
+    list_aux[1] = cantidad
+
+    if indice == 0:
+        list_aux[0] = 'Argentina'
+    elif indice == 1:
+        list_aux[0] = 'Paraguay'
+    elif indice == 2:
+        list_aux[0] = 'Uruguay'
+    elif indice == 3:
+        list_aux[0] = 'Brasil'
+
+
+def set_pais_confirmados():
+    global list_aux
+    entr_pais_var.set(list_aux[0])
+    entr_cant_var.set(list_aux[1])
 
     sys.stdout.flush()
 #funciones para combobox
