@@ -7,6 +7,7 @@
 #    Jun 01, 2020 04:27:42 PM -03  platform: Windows NT
 #    Jun 01, 2020 05:01:44 PM -03  platform: Windows NT
 #    Jun 01, 2020 05:17:35 PM -03  platform: Windows NT
+#    Jun 01, 2020 05:45:27 PM -03  platform: Windows NT
 
 import sys
 import ABM as ABM
@@ -103,6 +104,22 @@ def calcularCantDestino():
         if origen == w.TCombobox2.get() and destino == w.TCombobox3.get():
             contadorViaje+=1
         w.lblCantidadDestino.configure(text = str(contadorViaje))
+
+def buscadorDiputados():
+    contador = 0
+    for elemento in lstDiputados:
+        contador+=1
+        diputado = elemento[str(contador)] ['﻿diputado_id']
+        nombre = elemento[str(contador)] ['diputado_nombre']
+        apellido = elemento[str(contador)] ['diputado_apellido']
+        provincia = elemento[str(contador)] ['diputado_distrito']
+        bloque = elemento[str(contador)] ['diputado_bloque']
+        anio = elemento[str(contador)] ['bloque_inicio']
+        if diputado == w.entryID.get():
+            w.lblNombre.configure(text= str(nombre + apellido))
+            w.lblProvincia.configure(text= str(provincia))
+            w.lblBloque.configure(text= str(bloque))
+            w.lblAnio.configure(text= str(anio))
 
 def destroy_window():
     # Function which closes the window.
