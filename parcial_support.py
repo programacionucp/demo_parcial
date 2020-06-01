@@ -71,14 +71,17 @@ def calcular_dip_por_bloque():
     sys.stdout.flush()
 #funciones para combobox
 def mostrar_nombres_provincias():
-    global listaFinan, un_diputado
+    global listaFinan
     dip=1
+    lista=list()
     lista_de_provincias=list()
-    for un_indice in listadeDiputados:
-        dip+=1
-        for un_diputado in un_indice[str(dip)]:
-            if un_diputado["diputado_distrito"] not in lista_de_provincias:
-                lista_de_provincias.append(un_diputado["diputado_distrito"])
+    for un_indice in listadeDiputados[dip]:
+        print(un_indice["diputado_distrito"])
+        distritos=un_indice[str(dip)]["diputado_distrito"]
+        lista.append(distritos)
+        dip += 1
+        if lista not in lista_de_provincias:
+            lista_de_provincias.append(lista)
     return lista_de_provincias
 def destroy_window():
     # Function which closes the window.
