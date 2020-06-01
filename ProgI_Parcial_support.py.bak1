@@ -96,13 +96,12 @@ def calcularBloque():
 def calcularCantDestino():
     contador = 0
     contadorViaje = 0
-    for elemento in lstDiputados:
+    for elemento in lstViajes:
         contador+=1
         origen = elemento[str(contador)] ['Origen_ciudad']
         destino = elemento[str(contador)] ['Destino_ciudad']
         if origen == w.TCombobox2.get() and destino == w.TCombobox3.get():
             contadorViaje+=1
-            print(contadorViaje)
         w.lblCantidadDestino.configure(text = str(contadorViaje))
 
 def destroy_window():
